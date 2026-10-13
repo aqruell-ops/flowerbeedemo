@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Flower Bee — салон цветов</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff5f7;--bg2:#ffe3ea;--ink:#2b0f1e;--mut:#7d5f6c;--pink:#e0577b;--pink2:#c23f63;--plum:#2b0f1e;--leaf:#3e6b4f;--honey:#f2b84b;--card:#fff;--line:#f4cfd9;
+--serif:"Cormorant Garamond",Georgia,serif;--sans:"Onest",system-ui,sans-serif;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1c0f16;--bg2:#2a1520;--ink:#fff0f4;--mut:#c9a5b3;--card:#26141d;--line:#4a2b3a}}
+:root[data-theme="dark"]{--bg:#1c0f16;--bg2:#2a1520;--ink:#fff0f4;--mut:#c9a5b3;--card:#26141d;--line:#4a2b3a}
+html{scroll-behavior:smooth;scroll-padding-top:calc(76px + env(safe-area-inset-top,0px))}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--sans);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;color:inherit}
+:focus-visible{outline:3px solid var(--honey);outline-offset:3px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.05;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:28px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:24px;font-weight:600;letter-spacing:.02em}
+.logo i{width:38px;height:38px;border-radius:50%;background:var(--pink);display:grid;place-items:center}
+.nav nav{display:flex;gap:26px;margin-left:auto;font-size:15px;color:var(--mut)}
+.nav nav a:hover{color:var(--pink)}
+.cartbtn{background:var(--plum);color:#fff;padding:10px 18px;border-radius:99px;font-weight:500;display:flex;gap:8px;align-items:center}
+.cartbtn b{background:var(--honey);color:var(--plum);border-radius:99px;min-width:22px;height:22px;display:grid;place-items:center;font-size:13px;padding:0 6px}
+.cartbtn.pop{animation:pop .4s}
+@keyframes pop{50%{transform:scale(1.12)}}
+.hero{padding:56px 0 80px;position:relative}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(46px,7vw,92px);letter-spacing:-.02em}
+.hero p{font-size:19px;color:var(--mut);max-width:30em;margin:22px 0 32px}
+.btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn{padding:15px 28px;border-radius:99px;font-weight:600;transition:.25s}
+.btn.p{background:var(--pink);color:#fff}.btn.p:hover{background:var(--pink2);transform:translateY(-2px)}
+.btn.g{border:1.5px solid var(--ink)}.btn.g:hover{background:var(--ink);color:var(--bg)}
+.facts{display:flex;gap:34px;margin-top:40px;flex-wrap:wrap}
+.facts div{font-size:14px;color:var(--mut);max-width:130px;line-height:1.35}
+.facts b{display:block;font:600 34px var(--serif);color:var(--ink)}
+.badge{position:relative;aspect-ratio:1;width:min(100%,520px);margin:auto}
+.badge .disc{position:absolute;inset:0;border-radius:50%;background:var(--pink);box-shadow:0 30px 80px -20px rgba(224,87,123,.6)}
+.badge .ring{position:absolute;inset:0;animation:spin 40s linear infinite}
+.badge .ring text{font:500 17px var(--serif);letter-spacing:.18em;fill:#fff}
+.badge .bq{position:absolute;inset:17%;animation:rise 1.4s cubic-bezier(.2,.8,.2,1) both}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes rise{from{opacity:0;transform:translateY(60px) scale(.85)}}
+.bee{position:absolute;width:15%;right:6%;top:8%;animation:fly 6s ease-in-out infinite}
+@keyframes fly{50%{transform:translate(-30px,22px) rotate(-8deg)}}
+.strip{background:var(--plum);color:#ffd6e1;overflow:hidden;white-space:nowrap;padding:16px 0;font:italic 500 22px var(--serif)}
+.strip div{display:inline-block;animation:slide 32s linear infinite}
+.strip span{margin:0 28px}
+@keyframes slide{to{transform:translateX(-50%)}}
+section{padding:92px 0}
+.head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:36px}
+.head h2{font-size:clamp(36px,5vw,58px);max-width:12em}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{padding:9px 18px;border-radius:99px;background:var(--card);border:1px solid var(--line);font-size:14px;transition:.2s}
+.chip.on,.chip:hover{background:var(--pink);color:#fff;border-color:var(--pink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:22px}
+.card{background:var(--card);border-radius:26px;overflow:hidden;border:1px solid var(--line);display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-6px);box-shadow:0 24px 50px -24px rgba(224,87,123,.55)}
+.card .pic{aspect-ratio:1/.92;display:grid;place-items:center;position:relative}
+.card .pic svg{width:76%;transition:transform .5s}.card:hover .pic svg{transform:scale(1.07) rotate(-2deg)}
+.tag{position:absolute;left:14px;top:14px;background:var(--plum);color:#fff;font-size:12px;padding:4px 11px;border-radius:99px}
+.card .in{padding:18px 20px 20px;display:flex;flex-direction:column;gap:4px;flex:1}
+.card h3{font-size:27px}.card small{color:var(--mut);font-size:14px;flex:1}
+.buy{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+.buy b{font:600 24px var(--serif)}
+.buy button{background:var(--bg2);padding:9px 16px;border-radius:99px;font-weight:600;font-size:14px;transition:.2s}
+.buy button:hover{background:var(--pink);color:#fff}
+.why{background:var(--bg2)}
+.why .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:36px}
+.why h3{font-size:30px;margin-bottom:8px}.why p{color:var(--mut);margin:0}
+.why .ic{width:54px;height:54px;border-radius:50%;background:var(--pink);display:grid;place-items:center;margin-bottom:16px;font-size:24px}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+.plan{border:1.5px solid var(--line);border-radius:28px;padding:32px;background:var(--card)}
+.plan.hot{background:var(--plum);color:#fff;border-color:var(--plum);transform:translateY(-12px)}
+.plan h3{font-size:34px}.plan .pr{font:600 44px var(--serif);margin:10px 0}
+.plan .pr small{font:400 15px var(--sans);opacity:.7}
+.plan ul{list-style:none;padding:0;margin:0 0 24px;display:grid;gap:8px;color:var(--mut)}.plan.hot ul{color:#ecc}
+.plan li::before{content:"✿ ";color:var(--pink)}
+.revs{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+.rev{padding:28px;border-radius:26px;background:var(--card);border:1px solid var(--line)}
+.rev p{font:italic 500 23px/1.3 var(--serif);margin:0 0 18px}
+.rev span{font-size:14px;color:var(--mut)}.rev em{font-style:normal;color:var(--honey);letter-spacing:2px;display:block}
+.cta{background:var(--pink);color:#fff;border-radius:40px;padding:56px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.cta h2{font-size:clamp(34px,4.6vw,56px)}.cta p{opacity:.9}
+.fm{display:grid;gap:12px}
+.fm input{padding:16px 20px;border-radius:99px;border:0;font:inherit;background:#fff;color:#2b0f1e}
+.fm button{background:var(--plum);color:#fff;padding:16px;border-radius:99px;font-weight:600}
+footer{padding:44px 0 60px;color:var(--mut);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.drawer{position:fixed;inset:0 0 0 auto;width:min(420px,100%);background:var(--bg);z-index:40;transform:translateX(105%);transition:transform .4s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;box-shadow:-20px 0 60px rgba(0,0,0,.25);padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.drawer.open{transform:none}
+.dh{display:flex;justify-content:space-between;align-items:center;padding:22px 24px;border-bottom:1px solid var(--line)}
+.dh h3{font-size:32px}.dh button{background:none;font-size:28px;line-height:1}
+.items{flex:1;overflow:auto;padding:12px 24px}
+.it{display:grid;grid-template-columns:64px 1fr auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.it .th{border-radius:16px;aspect-ratio:1;display:grid;place-items:center}.it .th svg{width:80%}
+.it b{font-family:var(--serif);font-size:20px;display:block}.it small{color:var(--mut)}
+.q{display:flex;gap:8px;align-items:center}.q button{width:28px;height:28px;border-radius:50%;background:var(--bg2)}
+.df{padding:22px 24px;border-top:1px solid var(--line)}
+.tot{display:flex;justify-content:space-between;font:600 28px var(--serif);margin-bottom:14px}
+.df .btn{width:100%}
+.empty{text-align:center;color:var(--mut);padding:50px 0}
+.veil{position:fixed;inset:0;background:rgba(43,15,30,.5);z-index:30;opacity:0;pointer-events:none;transition:.3s}.veil.on{opacity:1;pointer-events:auto}
+.toast{position:fixed;left:50%;bottom:calc(28px + env(safe-area-inset-bottom,0px));transform:translate(-50%,120px);background:var(--plum);color:#fff;padding:14px 24px;border-radius:99px;z-index:50;transition:.4s;max-width:90%;text-align:center}
+.toast.on{transform:translate(-50%,0)}
+@media(max-width:860px){.nav nav{display:none}.cartbtn{margin-left:auto}.hero .wrap,.cta{grid-template-columns:1fr}.cta{padding:34px 24px}.plan.hot{transform:none}section{padding:64px 0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="logo" href="#top"><i><svg width="24" height="24" viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="2"><ellipse cx="20" cy="24" rx="7" ry="10" fill="#fff" fill-opacity=".25"/><path d="M13 21h14M13.5 26h13M14.5 31h11"/><path d="M14 17C6 8 4 17 12 20ZM26 17c8-9 10 0 2 3Z"/><path d="M17 11l-3-5M23 11l3-5"/></svg></i>Flower Bee</a>
+  <nav><a href="#catalog">Каталог</a><a href="#why">О салоне</a><a href="#plans">Подписка</a><a href="#reviews">Отзывы</a><a href="#order">Контакты</a></nav>
+  <button class="cartbtn" id="openCart" aria-label="Открыть корзину">Корзина <b id="cnt">0</b></button>
+</div></header>
+
+<main id="top">
+<div class="hero"><div class="wrap">
+  <div>
+    <h1>Цветы, которые говорят за вас</h1>
+    <p>Авторские букеты из свежих цветов. Собираем за 30 минут и привозим по Москве за час, с открыткой от руки.</p>
+    <div class="btns"><a class="btn p" href="#catalog">Выбрать букет</a><a class="btn g" href="#order">Заказать на заказ</a></div>
+    <div class="facts"><div><b>60 мин</b>доставка по городу</div><div><b>7 дней</b>свежесть гарантируем</div><div><b>4,9</b>средняя оценка клиентов</div></div>
+  </div>
+  <div class="badge">
+    <div class="disc"></div>
+    <svg class="ring" viewBox="0 0 200 200"><defs><path id="c" d="M100,100 m-86,0 a86,86 0 1,1 172,0 a86,86 0 1,1 -172,0"/></defs><text><textPath href="#c">САЛОН ЦВЕТОВ ✦ FLOWER BEE ✦ САЛОН ЦВЕТОВ ✦ FLOWER BEE ✦ </textPath></text></svg>
+    <div class="bq" id="heroBq"></div>
+    <svg class="bee" viewBox="0 0 40 40" fill="none" stroke="#2b0f1e" stroke-width="1.5"><ellipse cx="20" cy="24" rx="7" ry="10" fill="#f2b84b"/><path d="M13 21h14M13.5 26h13M14.5 31h11"/><path d="M14 17C6 8 4 17 12 20ZM26 17c8-9 10 0 2 3Z" fill="#fff" fill-opacity=".85"/><path d="M17 11l-3-5M23 11l3-5"/></svg>
+  </div>
+</div></div>
+
+<div class="strip" aria-hidden="true"><div id="mq"></div></div>
+
+<section id="catalog"><div class="wrap">
+  <div class="head"><h2>Букеты на сегодня</h2><div class="chips" id="chips"></div></div>
+  <div class="grid" id="grid"></div>
+</div></section>
+
+<section class="why" id="why"><div class="wrap">
+  <div class="head"><h2>Почему к нам возвращаются</h2></div>
+  <div class="cols">
+    <div><div class="ic">🌷</div><h3>Цветы с поставки утром</h3><p>Берём цветы у проверенных ферм и не держим их на складе дольше суток.</p></div>
+    <div><div class="ic">✂️</div><h3>Флорист собирает при вас</h3><p>Покажем фото готового букета до отправки. Не нравится — переделаем бесплатно.</p></div>
+    <div><div class="ic">🚚</div><h3>Доставка за 60 минут</h3><p>Курьер напишет, когда выедет, и пришлёт фото вручения.</p></div>
+    <div><div class="ic">💌</div><h3>Открытка с вашим текстом</h3><p>Напишем от руки то, что вы хотите сказать. Имя можно не называть.</p></div>
+  </div>
+</div></section>
+
+<section id="plans"><div class="wrap">
+  <div class="head"><h2>Цветы дома каждую неделю</h2></div>
+  <div class="plans">
+    <div class="plan"><h3>Лёгкая</h3><div class="pr">2 900 ₽<small> / неделя</small></div><ul><li>Небольшой сезонный букет</li><li>Доставка по четвергам</li><li>Пропуск недели в один клик</li></ul><a class="btn g" href="#order">Подключить</a></div>
+    <div class="plan hot"><h3>Уютная</h3><div class="pr">4 500 ₽<small> / неделя</small></div><ul><li>Средний авторский букет</li><li>Вазу дарим в первый заказ</li><li>Выбор дня и времени</li></ul><a class="btn p" href="#order">Подключить</a></div>
+    <div class="plan"><h3>Для офиса</h3><div class="pr">9 800 ₽<small> / неделя</small></div><ul><li>Композиции на ресепшен</li><li>Закрывающие документы</li><li>Личный флорист</li></ul><a class="btn g" href="#order">Подключить</a></div>
+  </div>
+</div></section>
+
+<section id="reviews" style="padding-top:0"><div class="wrap">
+  <div class="head"><h2>Говорят наши клиенты</h2></div>
+  <div class="revs">
+    <div class="rev"><em>★★★★★</em><p>Заказала маме на юбилей. Приехали ровно в назначенный час, а букет был лучше, чем на фото.</p><span>Анна, Москва</span></div>
+    <div class="rev"><em>★★★★★</em><p>Подписка на офис — лучшее решение года. Коллеги теперь приходят раньше.</p><span>Дмитрий, руководитель студии</span></div>
+    <div class="rev"><em>★★★★★</em><p>Просила флориста собрать в одной гамме с моим платьем. Угадали цвет до оттенка.</p><span>Мария, невеста</span></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0" id="order"><div class="wrap"><div class="cta">
+  <div><h2>Нужен особенный букет?</h2><p>Оставьте номер, и флорист позвонит в течение 10 минут, чтобы подобрать цветы под повод и бюджет.</p></div>
+  <div class="fm"><input id="nm" placeholder="Ваше имя" aria-label="Ваше имя"><input id="ph" type="tel" placeholder="Телефон" aria-label="Телефон"><button id="send">Перезвоните мне</button></div>
+</div></div></section>
+</main>
+
+<footer><div class="wrap"><div>Flower Bee, салон цветов. Ежедневно с 8:00 до 22:00</div><div>+7 (900) 000-00-00 &nbsp; hello@flowerbee.example</div></div></footer>
+
+<div class="veil" id="veil"></div>
+<aside class="drawer" id="drawer" aria-label="Корзина">
+  <div class="dh"><h3>Ваш заказ</h3><button id="closeCart" aria-label="Закрыть корзину">×</button></div>
+  <div class="items" id="items"></div>
+  <div class="df"><div class="tot"><span>Итого</span><span id="tot">0 ₽</span></div><button class="btn p" id="checkout">Оформить заказ</button></div>
+</aside>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const P=[
+{id:1,n:"Нежность",d:"Пионы, эвкалипт, сухоцвет",p:4900,c:"Букеты",a:["#f8a9bf","#ffd1dc"],bg:"#ffe3ea",t:"Хит"},
+{id:2,n:"Рассвет",d:"Персиковые розы и фрезия",p:5600,c:"Букеты",a:["#ffb48a","#ffd9b8"],bg:"#fff0e0"},
+{id:3,n:"Облако",d:"Воздушная гортензия в крафте",p:6200,c:"Монобукеты",a:["#b9c7ff","#e0e6ff"],bg:"#eef0ff"},
+{id:4,n:"Тюльпановое утро",d:"25 тюльпанов, лента в подарок",p:3200,c:"Монобукеты",a:["#ff7a9a","#ffb0c4"],bg:"#ffe9ef",t:"Сезон"},
+{id:5,n:"Красная страсть",d:"25 эквадорских роз",p:7900,c:"Монобукеты",a:["#d62752","#f0587a"],bg:"#ffdde5"},
+{id:6,n:"Лавандовый сон",d:"Композиция в шляпной коробке",p:4400,c:"Композиции",a:["#b69cf0","#d9c8ff"],bg:"#f1eaff"},
+{id:7,n:"Pink Box",d:"Розы и маттиола в коробке",p:5300,c:"Композиции",a:["#e0577b","#f7a1b8"],bg:"#ffe0e8",t:"Новинка"},
+{id:8,n:"Солнечный день",d:"Подсолнухи и ромашки",p:3800,c:"Букеты",a:["#f6bf2f","#ffe08a"],bg:"#fff6d6"}];
+const rub=n=>n.toLocaleString("ru-RU")+" ₽";
+function fl(a,b,n,r){let s="";for(let i=0;i<n;i++)s+=`<ellipse cx="50" cy="26" rx="${10*r}" ry="${21*r}" fill="${i%2?a:b}" transform="rotate(${i*360/n} 50 50)"/>`;return s+`<circle cx="50" cy="50" r="${8*r}" fill="#f2b84b"/>`}
+function bq(a,b){const pos=[[100,62,.95,8],[58,96,.78,7],[142,96,.78,7],[80,124,.6,6],[120,124,.6,6]];let st="",f="";
+pos.forEach(([x,y,s,n])=>{st+=`<path d="M100 196Q${(x+100)/2} ${(y+196)/2} ${x} ${y}" stroke="#3e6b4f" stroke-width="3" fill="none"/>`;f+=`<g transform="translate(${x-50*s} ${y-50*s}) scale(${s})">${fl(a,b,n,1)}</g>`});
+return `<svg viewBox="0 0 200 210">${st}<ellipse cx="72" cy="150" rx="22" ry="8" fill="#3e6b4f" transform="rotate(-30 72 150)"/><ellipse cx="130" cy="150" rx="22" ry="8" fill="#4d8062" transform="rotate(30 130 150)"/>${f}<path d="M58 152L142 152L114 206L86 206Z" fill="#fff" fill-opacity=".85"/><path d="M92 176h16" stroke="#e0577b" stroke-width="5" stroke-linecap="round"/></svg>`}
+$("#heroBq").innerHTML=bq("#fff","#ffd1dc");
+$("#mq").innerHTML=Array(10).fill('<span>Свежие цветы каждый день</span><span>✦</span><span>Доставка за час</span><span>✦</span><span>Открытка в подарок</span><span>✦</span>').join("");
+let cat="Все",cart={};
+const cats=["Все",...new Set(P.map(p=>p.c))];
+function chips(){$("#chips").innerHTML=cats.map(c=>`<button class="chip ${c===cat?"on":""}" data-c="${c}">${c}</button>`).join("")}
+function grid(){$("#grid").innerHTML=P.filter(p=>cat==="Все"||p.c===cat).map(p=>`<article class="card"><div class="pic" style="background:${p.bg}">${p.t?`<span class="tag">${p.t}</span>`:""}${bq(...p.a)}</div><div class="in"><h3>${p.n}</h3><small>${p.d}</small><div class="buy"><b>${rub(p.p)}</b><button data-add="${p.id}">В корзину</button></div></div></article>`).join("")}
+function draw(){const ids=Object.keys(cart);let n=0,t=0;
+$("#items").innerHTML=ids.length?ids.map(id=>{const p=P.find(x=>x.id==id),q=cart[id];n+=q;t+=q*p.p;return `<div class="it"><div class="th" style="background:${p.bg}">${bq(...p.a)}</div><div><b>${p.n}</b><small>${rub(p.p)}</small></div><div class="q"><button data-m="${id}" aria-label="Убрать один">−</button>${q}<button data-pl="${id}" aria-label="Добавить ещё">+</button></div></div>`}).join(""):'<div class="empty">В корзине пока пусто. Выберите букет в каталоге.</div>';
+$("#cnt").textContent=n;$("#tot").textContent=rub(t)}
+function toast(m){const e=$("#toast");e.textContent=m;e.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("on"),2600)}
+const open=v=>{$("#drawer").classList.toggle("open",v);$("#veil").classList.toggle("on",v)};
+document.addEventListener("click",e=>{const t=e.target.closest("button");if(!t)return;
+if(t.dataset.c){cat=t.dataset.c;chips();grid()}
+if(t.dataset.add){cart[t.dataset.add]=(cart[t.dataset.add]||0)+1;draw();const b=$("#openCart");b.classList.remove("pop");void b.offsetWidth;b.classList.add("pop");toast("Добавлено в корзину")}
+if(t.dataset.pl){cart[t.dataset.pl]++;draw()}
+if(t.dataset.m){if(--cart[t.dataset.m]<1)delete cart[t.dataset.m];draw()}});
+$("#openCart").onclick=()=>open(true);$("#closeCart").onclick=()=>open(false);$("#veil").onclick=()=>open(false);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")open(false)});
+$("#checkout").onclick=()=>{if(!Object.keys(cart).length)return toast("Сначала добавьте букет в корзину");cart={};draw();open(false);toast("Заказ принят. Флорист уже собирает букет")};
+$("#send").onclick=()=>{if(!$("#ph").value.trim())return toast("Укажите телефон, чтобы мы могли перезвонить");$("#nm").value=$("#ph").value="";toast("Спасибо! Флорист позвонит в течение 10 минут")};
+chips();grid();draw();
+</script>
+</body>
+</html>
